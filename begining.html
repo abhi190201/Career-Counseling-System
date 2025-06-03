@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="hero" style="background-image: url('{% static 'images/your-image.jpg' %}'); background-size: cover; background-position: center; padding: 100px 0; color: white; text-align: center;">
+    <div class="container">
+        <h1>Web Development Roadmap – Beginner Level</h1>
+        <p class="lead mt-3">Start your journey in tech by building the web. Learn to create websites from scratch, one step at a time.</p>
+    </div>
+</div>
+
+<div class="container roadmap-section">
+    <h2 class="text-center mb-4">What is Web Development?</h2>
+    <p>
+        Web development is the art and science of creating websites and web applications. As a web developer, you’ll be responsible for building and maintaining everything people see and interact with in their browsers. This field offers a high demand for talent, flexibility in career paths, and endless opportunities for growth.
+    </p>
+
+    <h3>🔑 Key Concepts to Learn First</h3>
+    <ul>
+        <li><strong>HTML (HyperText Markup Language):</strong> The backbone of web pages. HTML defines the structure — like headings, paragraphs, lists, and images. It's like the skeleton of your website.</li>
+        <li><strong>CSS (Cascading Style Sheets):</strong> Adds style to your HTML. With CSS, you control colors, fonts, spacing, and layouts. Think of it as the design layer.</li>
+        <li><strong>JavaScript:</strong> A programming language used to add interactivity. It powers dynamic content like dropdowns, sliders, form validation, and even games!</li>
+        <li><strong>Browser Dev Tools:</strong> Every browser (like Chrome) has built-in tools to inspect and debug websites. Learning to use these is crucial for testing and fixing your code.</li>
+    </ul>
+
+    <h3>🎓 Suggested Courses (Free & Paid)</h3>
+    <ul>
+        <!-- Free & Open Source -->
+        <li><a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer"><strong>freeCodeCamp (Free)</strong></a>: Offers thousands of hours of hands-on tutorials and certifications in HTML, CSS, JavaScript, and more.</li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web" target="_blank" rel="noopener noreferrer"><strong>MDN Web Docs (Free)</strong></a>: The most trusted technical reference for learning web standards and browser APIs.</li>
+        <li><a href="https://cs50.harvard.edu/x/" target="_blank" rel="noopener noreferrer"><strong>CS50x (Free)</strong></a>: Harvard’s Introduction to Computer Science — covers programming fundamentals and includes some web concepts.</li>
+
+        <!-- Paid Courses -->
+        <li><a href="https://www.udemy.com/course/the-complete-web-developer-zero-to-mastery/" target="_blank" rel="noopener noreferrer"><strong>Udemy – The Complete Web Developer (Paid)</strong></a>: One of the most popular beginner bootcamps, with real-world projects and lifetime access.</li>
+        <li><a href="https://www.coursera.org/specializations/web-design" target="_blank" rel="noopener noreferrer"><strong>Coursera – Web Design for Everyone (Paid)</strong></a>: University of Michigan-led course series focused on front-end skills, available with financial aid.</li>
+        <li><a href="https://www.codecademy.com/learn/full-stack-engineer-career-path" target="_blank" rel="noopener noreferrer"><strong>Codecademy – Full Stack Path (Paid/Free)</strong></a>: Hands-on platform with guided career paths and some free content.</li>
+    </ul>
+
+    <h3>🧰 Tools & Software You Should Start Using</h3>
+    <ul>
+        <li><strong>VSCode:</strong> A lightweight yet powerful code editor with tons of extensions, perfect for beginners.</li>
+        <li><strong>Web Browsers:</strong> Use Chrome or Firefox for development — they come with great debugging tools.</li>
+        <li><strong>Git & GitHub (optional at this stage):</strong> Version control tools that help you manage your projects and collaborate with others.</li>
+    </ul>
+
+    <h3>🧠 Skills Required</h3>
+    <ul>
+        <li>Ability to write basic HTML to structure a page.</li>
+        <li>Use CSS to style elements and layout content with Flexbox/Grid.</li>
+        <li>Write small JavaScript scripts to add interactivity (like form validation).</li>
+        <li>Understand how to use browser dev tools to debug and inspect code.</li>
+        <li>Basic understanding of responsive design so your site works on mobile and desktop.</li>
+    </ul>
+
+    <h3>🎓 Educational Requirements</h3>
+    <ul>
+        <li>You don’t need a computer science degree! Many web developers are self-taught.</li>
+        <li>Certificates from platforms like freeCodeCamp, Coursera, or Udemy can help you build a portfolio.</li>
+        <li>Practice and real-world projects matter more than paper qualifications in most cases.</li>
+    </ul>
+
+    <h3>🛠️ Duties and Responsibilities of a Beginner Web Developer</h3>
+    <ul>
+        <li>Build basic websites using HTML, CSS, and JavaScript.</li>
+        <li>Collaborate with designers or back-end developers.</li>
+        <li>Test websites across multiple devices and browsers.</li>
+        <li>Fix bugs and continuously improve website performance.</li>
+        <li>Keep learning new tools and best practices.</li>
+    </ul>
+
+    <h3>💰 Salary Expectations</h3>
+    <ul>
+        <li><strong>India:</strong> ₹4,00,000 – ₹6,00,000 per year as a fresher.</li>
+        <li><strong>Global:</strong> $50,000 – $70,000 per year for entry-level positions in the US or Canada.</li>
+        <li>Freelancers may earn per project or hourly (typically $10–$50/hour depending on skills).</li>
+    </ul>
+
+    <h3>🏢 Top Companies Hiring Beginners</h3>
+    <ul>
+        <!-- Indian Companies -->
+        <li><a href="https://careers.tcs.com/" target="_blank" rel="noopener noreferrer"><strong>TCS (Tata Consultancy Services)</strong></a>: One of India’s largest IT firms. Regularly hires freshers through their NQT and campus programs.</li>
+        <li><a href="https://www.infosys.com/careers/apply.html" target="_blank" rel="noopener noreferrer"><strong>Infosys</strong></a>: Offers a fresher program called “Infosys Springboard” and hires entry-level developers.</li>
+        <li><a href="https://careers.wipro.com/" target="_blank" rel="noopener noreferrer"><strong>Wipro</strong></a>: Offers graduate hiring through the “Elite National Talent Hunt” and campus placements.</li>
+        <li><a href="https://www.hcltech.com/careers" target="_blank" rel="noopener noreferrer"><strong>HCLTech</strong></a>: Has a dedicated fresher hiring section and training programs for beginners.</li>
+        <li><a href="https://careers.zoho.com/" target="_blank" rel="noopener noreferrer"><strong>Zoho</strong></a>: Known for hiring directly through its website and conducting off-campus drives.</li>
+
+        <!-- Global Companies & Freelance Platforms -->
+        <li><a href="https://www.wix.com/jobs" target="_blank" rel="noopener noreferrer"><strong>Wix</strong></a>: Website builder company that occasionally hires junior front-end developers.</li>
+        <li><a href="https://www.shopify.com/careers" target="_blank" rel="noopener noreferrer"><strong>Shopify</strong></a>: E-commerce platform that builds tools for online stores.</li>
+        <li><a href="https://angel.co/jobs" target="_blank" rel="noopener noreferrer"><strong>Startups on Wellfound (AngelList)</strong></a>: Discover early-stage startups actively hiring junior developers.</li>
+        <li><a href="https://www.upwork.com/freelance-jobs/web-development/" target="_blank" rel="noopener noreferrer"><strong>Upwork</strong></a>: Popular freelance platform for developers.</li>
+        <li><a href="https://www.fiverr.com/categories/programming-tech/website-development" target="_blank" rel="noopener noreferrer"><strong>Fiverr</strong></a>: Freelance gigs marketplace with a web development section.</li>
+        <li><a href="https://www.freelancer.com/jobs/web-development/" target="_blank" rel="noopener noreferrer"><strong>Freelancer.com</strong></a>: Another platform to find beginner-level freelance web projects.</li>
+    </ul>
+
+    <h3>🌱 Final Words for Beginners</h3>
+    <p>
+        Don’t get overwhelmed. Start with one thing at a time — HTML, then CSS, then JavaScript. Build small projects. Break things. Fix them. That’s how learning happens. The web is your playground, and you have everything you need to start building it. 🚀
+    </p>
+</div>
+{% endblock %}

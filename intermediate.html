@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="hero" style="background-image: url('{% static 'images/intermediate-bg.jpg' %}'); background-size: cover; background-position: center; padding: 100px 0; color: white; text-align: center;">
+    <div class="container">
+        <h1>Web Development Roadmap – Intermediate Level</h1>
+        <p class="lead mt-3">Level up your skills: build dynamic applications, understand tooling, and start thinking like a professional developer.</p>
+    </div>
+</div>
+
+<div class="container roadmap-section">
+    <h2 class="text-center mb-4">What’s Next After the Basics?</h2>
+    <p>
+        Now that you're comfortable with HTML, CSS, and basic JavaScript, it's time to go deeper. Intermediate developers focus on writing modular code, using frameworks and libraries, understanding version control, and building full-featured applications.
+    </p>
+
+    <h3>⚙️ Core Topics to Learn</h3>
+    <ul>
+        <li><strong>Advanced JavaScript:</strong> ES6+ syntax, closures, async/await, promises, and DOM manipulation in depth.</li>
+        <li><strong>Git & GitHub:</strong> Essential tools for version control, collaboration, and open-source contributions.</li>
+        <li><strong>Responsive Design:</strong> Master media queries, mobile-first design, and accessibility best practices.</li>
+        <li><strong>Package Managers:</strong> Learn to use npm or yarn to manage project dependencies.</li>
+        <li><strong>CSS Preprocessors:</strong> SCSS/SASS to write cleaner, reusable stylesheets.</li>
+        <li><strong>JavaScript Frameworks:</strong> Start with React.js or Vue.js to build component-based UIs.</li>
+        <li><strong>APIs:</strong> Understand how to make requests using `fetch` or `axios` and work with JSON.</li>
+        <li><strong>Basic Backend Introduction:</strong> Get familiar with Node.js and Express for building simple REST APIs.</li>
+    </ul>
+
+    <h3>📚 Recommended Intermediate Courses & Platforms</h3>
+    <ul>
+        <li><a href="https://frontendmasters.com/learn/javascript/" target="_blank" rel="noopener noreferrer"><strong>Frontend Masters – JavaScript: The Hard Parts</strong></a> (Paid): Deep dives into core JavaScript concepts.</li>
+        <li><a href="https://www.udemy.com/course/modern-javascript-from-the-beginning/" target="_blank" rel="noopener noreferrer"><strong>Udemy – Modern JavaScript from the Beginning</strong></a> (Paid): Project-driven learning for intermediate JS.</li>
+        <li><a href="https://www.codecademy.com/learn/react-101" target="_blank" rel="noopener noreferrer"><strong>Codecademy – Learn React</strong></a> (Free/Paid): Beginner-friendly React course.</li>
+        <li><a href="https://javascript.info/" target="_blank" rel="noopener noreferrer"><strong>JavaScript.info</strong></a> (Free): In-depth articles and tutorials on advanced JavaScript.</li>
+        <li><a href="https://scrimba.com/learn/learnreact" target="_blank" rel="noopener noreferrer"><strong>Scrimba – Learn React</strong></a> (Free/Paid): Interactive coding screencasts and exercises.</li>
+    </ul>
+
+    <h3>🔧 Tools You Should Be Comfortable With</h3>
+    <ul>
+        <li><strong>VSCode + Extensions:</strong> Live Server, Prettier, ESLint, GitLens, etc.</li>
+        <li><strong>Browser DevTools:</strong> Network tab, localStorage, cookies, performance profiling.</li>
+        <li><strong>Terminal Commands:</strong> Navigating folders, installing packages, using Git via CLI.</li>
+        <li><strong>Code Hosting:</strong> GitHub repositories, README files, project boards.</li>
+    </ul>
+
+    <h3>🧠 Real-World Skills</h3>
+    <ul>
+        <li>Build responsive web apps with state and routing (e.g., using React Router).</li>
+        <li>Integrate third-party APIs (weather, news, payments).</li>
+        <li>Use Git to manage your code history and push to GitHub.</li>
+        <li>Set up simple REST APIs and connect front-end to back-end.</li>
+        <li>Write clean, modular, and reusable code with components.</li>
+    </ul>
+
+    <h3>💼 Projects to Build</h3>
+    <ul>
+        <li>A to-do list with local storage or API persistence.</li>
+        <li>A blog site using a headless CMS (e.g., Contentful) or Markdown files.</li>
+        <li>A weather app fetching live data from an API.</li>
+        <li>A portfolio site with multiple pages and navigation.</li>
+        <li>A full CRUD app using React + Express + MongoDB (MERN stack intro).</li>
+    </ul>
+
+    <h3>💰 Salary Expectations</h3>
+    <ul>
+        <li><strong>India:</strong> ₹6,00,000 – ₹10,00,000 per year for intermediate roles.</li>
+        <li><strong>Global:</strong> $70,000 – $100,000 per year depending on stack and location.</li>
+        <li>Freelancers may earn more with specialized React/JS skills and API integration experience.</li>
+    </ul>
+
+    <h3>🏢 Top Companies Hiring Intermediate Developers</h3>
+    <ul>
+        <li><a href="https://www.accenture.com/in-en/careers" target="_blank" rel="noopener noreferrer"><strong>Accenture</strong></a>: Offers full-stack and front-end roles across India.</li>
+        <li><a href="https://careers.thoughtworks.com/" target="_blank" rel="noopener noreferrer"><strong>ThoughtWorks</strong></a>: Known for hiring strong JavaScript/React developers.</li>
+        <li><a href="https://careers.flipkart.com/" target="_blank" rel="noopener noreferrer"><strong>Flipkart</strong></a>: Indian e-commerce giant with React/Node projects.</li>
+        <li><a href="https://careers.paytm.com/" target="_blank" rel="noopener noreferrer"><strong>Paytm</strong></a>: Actively hires intermediate web developers for consumer apps.</li>
+        <li><a href="https://www.linkedin.com/jobs" target="_blank" rel="noopener noreferrer"><strong>LinkedIn Jobs</strong></a>: Explore remote and hybrid roles in companies across the globe.</li>
+    </ul>
+
+    <h3>🌱 Final Advice for Intermediate Learners</h3>
+    <p>
+        You’re no longer just a beginner — this is the phase where your confidence grows. Build real apps, contribute to GitHub projects, and learn by doing. Mastering the dev environment and modern tools will help you stand out.
+    </p>
+</div>
+{% endblock %}

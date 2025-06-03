@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="hero" style="background-image: url('{% static 'images/expert-bg.jpg' %}'); background-size: cover; background-position: center; padding: 100px 0; color: white; text-align: center;">
+    <div class="container">
+        <h1>Web Development Roadmap – Expert Level</h1>
+        <p class="lead mt-3">Architect scalable systems, lead development teams, and build software that powers global platforms.</p>
+    </div>
+</div>
+
+<div class="container roadmap-section">
+    <h2 class="text-center mb-4">Welcome to the Expert Level</h2>
+    <p>
+        At this stage, you're not just building websites — you're solving real-world business problems with architecture, security, performance, and scalability in mind. You're expected to lead teams, make architectural decisions, and ensure maintainable, enterprise-grade solutions.
+    </p>
+
+    <h3>📐 Advanced Front-End Architecture</h3>
+    <ul>
+        <li><strong>Component Libraries & Design Systems:</strong> Build and maintain scalable UI libraries using tools like Storybook, Figma, or Tailwind UI.</li>
+        <li><strong>Micro-Frontend Architecture:</strong> Decompose large apps using Module Federation or single-spa.</li>
+        <li><strong>Performance Optimization:</strong> Use Lighthouse, lazy loading, Webpack chunking, and asset optimization.</li>
+        <li><strong>Accessibility (WCAG 2.1):</strong> Build inclusive experiences using ARIA roles, semantic HTML, and screen-reader support.</li>
+    </ul>
+
+    <h3>🛠 Back-End & API Engineering</h3>
+    <ul>
+        <li><strong>Advanced Node.js / Express:</strong> Scalable APIs with middleware, validation, and security layers.</li>
+        <li><strong>Authentication & Authorization:</strong> JWT, OAuth2, session management, and RBAC (role-based access control).</li>
+        <li><strong>GraphQL & REST:</strong> Design and implement modern API schemas and resolvers.</li>
+        <li><strong>Database Mastery:</strong> Use PostgreSQL, MongoDB, Redis, and master query optimization and indexing.</li>
+    </ul>
+
+    <h3>🚀 DevOps & Cloud Deployment</h3>
+    <ul>
+        <li><strong>CI/CD Pipelines:</strong> Automate testing and deployment with GitHub Actions, GitLab CI, Jenkins.</li>
+        <li><strong>Docker & Kubernetes:</strong> Containerize apps and deploy using Helm, Ingress, and auto-scaling on Kubernetes clusters.</li>
+        <li><strong>Infrastructure as Code:</strong> Use Terraform or AWS CloudFormation to define scalable infrastructure.</li>
+        <li><strong>Monitoring & Observability:</strong> Integrate Prometheus, Grafana, ELK stack, and Sentry for logs and metrics.</li>
+    </ul>
+
+    <h3>🧪 Testing, Security & Best Practices</h3>
+    <ul>
+        <li><strong>Testing:</strong> Unit tests (Jest, Mocha), integration (Supertest), E2E (Cypress, Playwright).</li>
+        <li><strong>Secure Coding:</strong> Prevent XSS, CSRF, SSRF, and SQL Injection using proper sanitization and validation techniques.</li>
+        <li><strong>Code Reviews & Linting:</strong> Enforce standards using ESLint, Prettier, Husky, and commit hooks.</li>
+        <li><strong>Documentation:</strong> Use tools like Swagger, Postman, and Markdown-rich READMEs for maintainability.</li>
+    </ul>
+
+    <h3>🌍 Scalable System Design</h3>
+    <ul>
+        <li><strong>Event-Driven Architecture:</strong> RabbitMQ, Kafka, WebSockets.</li>
+        <li><strong>Serverless Functions:</strong> AWS Lambda, Azure Functions, Google Cloud Functions for on-demand scaling.</li>
+        <li><strong>CDNs & Edge Computing:</strong> Use Cloudflare, Vercel Edge Functions to optimize latency.</li>
+        <li><strong>Multi-region Deployments:</strong> Build geo-redundant systems using AWS/GCP.</li>
+    </ul>
+
+    <h3>📚 Courses & Certifications for Expert Developers</h3>
+    <ul>
+        <li><a href="https://frontendmasters.com/paths/fullstack/" target="_blank" rel="noopener noreferrer"><strong>Frontend Masters – Fullstack Path</strong></a> (Paid): Deep dives in performance, architecture, and patterns.</li>
+        <li><a href="https://www.udemy.com/course/devops-mastery/" target="_blank" rel="noopener noreferrer"><strong>Udemy – DevOps Mastery</strong></a> (Paid): Practical deployment pipelines and infrastructure automation.</li>
+        <li><a href="https://aws.amazon.com/certification/certified-developer-associate/" target="_blank" rel="noopener noreferrer"><strong>AWS Developer Certification</strong></a>: Prove your cloud deployment and DevOps expertise.</li>
+        <li><a href="https://www.katacoda.com/" target="_blank" rel="noopener noreferrer"><strong>Katacoda (Free)</strong></a>: Interactive cloud labs and real DevOps scenarios.</li>
+    </ul>
+
+    <h3>💼 Expected Roles & Salaries</h3>
+    <ul>
+        <li><strong>India:</strong> ₹18L – ₹50L+ per annum (Team Lead, Architect, SDE III, Principal Engineer)</li>
+        <li><strong>Global:</strong> $120,000 – $200,000+ per year (Senior/Staff Engineers, Tech Leads, Architects)</li>
+    </ul>
+
+    <h3>🏢 Elite Companies Hiring Experts</h3>
+    <ul>
+        <li><a href="https://careers.google.com/" target="_blank" rel="noopener noreferrer"><strong>Google</strong></a>: Known for its rigorous engineering standards and large-scale systems.</li>
+        <li><a href="https://careers.microsoft.com/" target="_blank" rel="noopener noreferrer"><strong>Microsoft</strong></a>: Offers roles in cloud, productivity, and developer tools divisions.</li>
+        <li><a href="https://www.amazon.jobs/" target="_blank" rel="noopener noreferrer"><strong>Amazon</strong></a>: Engineering roles across AWS, Alexa, and Prime Video platforms.</li>
+        <li><a href="https://www.flipkartcareers.com/" target="_blank" rel="noopener noreferrer"><strong>Flipkart</strong></a>: India's leading e-commerce company hiring expert backend and DevOps engineers.</li>
+        <li><a href="https://www.swiggy.com/careers" target="_blank" rel="noopener noreferrer"><strong>Swiggy</strong></a>: Building distributed systems at scale for logistics and real-time delivery.</li>
+    </ul>
+
+    <h3>📈 Final Note</h3>
+    <p>
+        As an expert, you're not just building — you're mentoring, architecting, and pushing boundaries. Stay humble, stay curious, and never stop learning. Deep tech mastery comes from practical experience, building teams, and embracing complexity with simplicity.
+    </p>
+</div>
+{% endblock %}
