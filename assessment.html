@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+  <h2 class="text-center mb-5">Choose Your Test</h2>
+  <div class="row justify-content-center">
+
+    <!-- Interest-based test box -->
+    <div class="col-md-5 mb-4">
+      <div class="card shadow-sm p-4 h-100">
+        <h4 class="mb-3">Find Your Domain of Interest</h4>
+        <p>Unsure where to begin? Take a test based on your preferences and get matched with domains that fit you best.</p>
+        <a href="{% url 'interest_questions' %}" class="btn btn-primary mt-3">Start Interest Test</a>
+      </div>
+    </div>
+
+    <!-- Domain-specific test box -->
+    <div class="col-md-5 mb-4">
+      <div class="card shadow-sm p-4 h-100">
+        <h4 class="mb-3">Test a Domain You Already Have in Mind</h4>
+        <p>Already have a domain in mind? Take a test to measure your knowledge in that specific area.</p>
+        <a href="{% url 'domain_list' %}" class="btn btn-success mt-3">Select a Domain</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

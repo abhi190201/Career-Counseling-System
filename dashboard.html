@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mt-4">Dashboard</h1>
+    <span style="color: #ffffff; text-shadow: 1px 1px 3px #000000; font-weight: 600;">
+        Logged in as: <strong>{{ request.user.username }}</strong>
+    </span>
+</div>
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active" style="color: #ffffff; text-shadow: 1px 1px 3px #000000; font-weight: 600;">
+        Welcome back, <strong>{{ request.user.full_name }}</strong>
+    </li>
+</ol>
+
+
+    <div class="row">
+        <!-- Profile Card -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-info text-white mb-4">
+                <div class="card-body">
+                    <i class="fas fa-user-circle fa-2x me-2"></i> Profile
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="{% url 'profile' %}" target="_blank">Go to Profile</a>
+                    <div class="small text-white"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interest Test Card -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">
+                    <i class="fas fa-search fa-2x me-2"></i> Find Domain of Interest
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="{% url 'interest_questions' %}" target="_blank">Start Test</a>
+                    <div class="small text-white"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Domain Test Card -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+                <div class="card-body">
+                    <i class="fas fa-brain fa-2x me-2"></i> Domain Test
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="{% url 'domains' %}" target="_blank">Take Domain Test</a>
+                    <div class="small text-white"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Roadmap Card -->
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body">
+                    <i class="fas fa-route fa-2x me-2"></i> Roadmap
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="{% url 'roadmap' %}" target="_blank">View Roadmap</a>
+                    <div class="small text-white"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Button -->
+    <div class="text-center mt-5">
+        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#contactModal">
+            Contact Support
+        </button>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 shadow"
+                 style="background-color: var(--bs-body-bg); color: var(--bs-body-color);">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactModalLabel">Need Help?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>If you're experiencing any issues, feel free to contact us:</p>
+                    <a href="mailto:noreplycareercounseling@gmail.com" class="btn btn-primary">
+                        Email Support
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

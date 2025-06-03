@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="ajaxContent">
+
+    <div class="container py-4">
+        <div class="row">
+            <!-- Profile Picture Section -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow text-center border-0 rounded-4 profile-card">
+                    <div class="card-body">
+                        <h5 class="mb-3">Profile Picture</h5>
+                        <img src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}/media/profile_pics/default-avatar1.png{% endif %}" 
+                             alt="Profile Picture"
+                             class="rounded-circle shadow" width="150" height="150"
+                             style="object-fit: cover;">
+                        <p class="text-muted mt-3">{{ user.full_name }}</p> <!-- Display full name -->
+                        <p class="text-muted">{{ user.email }}</p> <!-- Display email -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Details Section -->
+            <div class="col-md-8">
+                <div class="card shadow border-0 rounded-4 profile-card">
+                    <div class="card-body">
+                        <h5 class="mb-3">Account Details</h5>
+
+                        {% if messages %}
+                            <div class="alert alert-info">
+                                {% for message in messages %}
+                                    <p>{{ message }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <!-- Profile Update Form -->
+                        <form method="POST" enctype="multipart/form-data" id="updateProfileForm">
+                            {% csrf_token %}
+                            <input type="hidden" name="profile_update" value="true">
+
+                            <div class="mb-3">
+                                <label for="id_full_name" class="form-label">Full Name</label>
+                                <input type="text" name="full_name" id="id_full_name" 
+                                       class="form-control" placeholder="Enter your full name" 
+                                       value="{{ form.full_name.value|default:user.full_name }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="id_username" class="form-label">Username</label>
+                                <input type="text" name="username" id="id_username" 
+                                       class="form-control" disabled value="{{ user.username }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="id_email" class="form-label">Email Address</label>
+                                <input type="email" name="email" id="id_email" 
+                                       class="form-control" disabled value="{{ user.email }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="id_profile_picture" class="form-label">Change Profile Image</label>
+                                <input type="file" name="profile_picture" id="id_profile_picture" 
+                                       class="form-control">
+                            </div>
+
+                            <!-- 10th and 12th Percentage Fields -->
+                            <div class="mb-3">
+    <label for="id_tenth_percentage" class="form-label">10th Grade Percentage</label>
+    <input type="text" name="tenth_percentage" id="id_tenth_percentage"
+           class="form-control" placeholder="e.g., 75.89"
+           maxlength="5"
+           value="{{ form.tenth_percentage.value|default:'' }}"
+           pattern="^\d{1,2}(\.\d{1,2})?$"
+           title="Enter up to 4 digits. Decimal will auto-insert after 2 digits.">
+</div>
+
+<script>
+document.getElementById('id_tenth_percentage').addEventListener('input', function (e) {
+    let val = this.value.replace(/\D/g, '');  // Remove all non-digits
+    if (val.length <= 2) {
+        this.value = val;
+    } else if (val.length <= 4) {
+        this.value = val.slice(0, 2) + '.' + val.slice(2);
+    } else {
+        this.value = val.slice(0, 2) + '.' + val.slice(2, 4); // restrict max 4 digits total
+    }
+});
+</script>
+
+
+                            <!-- 12th Grade Percentage -->
+<div class="mb-3">
+    <label for="id_twelfth_percentage" class="form-label">12th Grade Percentage</label>
+    <input type="text" name="twelfth_percentage" id="id_twelfth_percentage"
+           class="form-control" placeholder="e.g., 85.25"
+           maxlength="5"
+           value="{{ form.twelfth_percentage.value|default:'' }}"
+           pattern="^\d{1,2}(\.\d{1,2})?$"
+           title="Enter up to 4 digits. Decimal will auto-insert after 2 digits.">
+</div>
+
+<!-- Graduation Percentage -->
+<div class="mb-3">
+    <label for="id_graduation_percentage" class="form-label">Graduation Percentage</label>
+    <input type="text" name="graduation_percentage" id="id_graduation_percentage"
+           class="form-control" placeholder="e.g., 78.63"
+           maxlength="5"
+           value="{{ form.graduation_percentage.value|default:'' }}"
+           pattern="^\d{1,2}(\.\d{1,2})?$"
+           title="Enter up to 4 digits. Decimal will auto-insert after 2 digits.">
+</div>
+
+<script>
+function autoFormatPercentage(inputId) {
+    const input = document.getElementById(inputId);
+    input.addEventListener('input', function () {
+        let val = this.value.replace(/\D/g, '');
+        if (val.length <= 2) {
+            this.value = val;
+        } else if (val.length <= 4) {
+            this.value = val.slice(0, 2) + '.' + val.slice(2);
+        } else {
+            this.value = val.slice(0, 2) + '.' + val.slice(2, 4);
+        }
+    });
+}
+
+autoFormatPercentage('id_twelfth_percentage');
+autoFormatPercentage('id_graduation_percentage');
+</script>
+
+
+                            <div class="mb-3">
+    <label for="id_graduation_year" class="form-label">Graduation Year</label>
+    <input type="number" name="graduation_year" id="id_graduation_year"
+           class="form-control" placeholder="Graduation Year"
+           min="1980" max="2030" maxlength="4"
+           oninput="this.value = this.value.slice(0, 4);"
+           value="{{ form.graduation_year.value|default:'' }}"
+           title="Enter a 4-digit year between 1980 and 2030">
+</div>
+
+
+                            <div class="mb-3">
+    <label for="id_graduation_stream" class="form-label">Graduation Stream</label>
+    <select name="graduation_stream" id="id_graduation_stream" class="form-control" onchange="toggleOtherStream(this)">
+    {% for value, label in form.fields.graduation_stream.choices %}
+        <option value="{{ value }}" {% if form.initial.graduation_stream == value %}selected{% endif %}>{{ label }}</option>
+    {% endfor %}
+</select>
+</div>
+
+<div class="mb-3" id="other_stream_input" style="display: {% if form.initial.graduation_stream == 'Other' %}block{% else %}none{% endif %};">
+    <label for="id_other_graduation_stream" class="form-label">Enter Your Stream</label>
+    <input type="text" name="other_graduation_stream" id="id_other_graduation_stream"
+           class="form-control" placeholder="Enter your graduation stream manually"
+           value="{{ form.initial.other_graduation_stream|default:'' }}">
+</div>
+
+<script>
+    function toggleOtherStream(select) {
+        const otherInput = document.getElementById('other_stream_input');
+        if (select.value === "Other") {
+            otherInput.style.display = 'block';
+        } else {
+            otherInput.style.display = 'none';
+            document.getElementById('id_other_graduation_stream').value = '';
+        }
+    }
+</script>
+
+
+                            <div class="mb-3">
+                                <label for="id_resume" class="form-label">Upload Resume</label>
+                                <input type="file" name="resume" id="id_resume" 
+                                       class="form-control">
+                            </div>
+
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-primary">Update Profile</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if messages %}
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            {% for message in messages %}
+            <div class="toast align-items-center text-white bg-success border-0 show" role="alert">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        {{ message }}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+</div>
+
+<!-- Scripts -->
+<script>
+// Profile Picture Preview
+document.getElementById('id_profile_picture').addEventListener('change', function (e) {
+    const [file] = e.target.files;
+    if (file) {
+        const preview = document.querySelector('img[alt="Profile Picture"]');
+        preview.src = URL.createObjectURL(file);
+    }
+});
+
+// Dynamic background adaptation for light/dark mode
+function adaptProfileCardBackground() {
+    const theme = document.documentElement.getAttribute('data-theme');
+    const cards = document.querySelectorAll('.profile-card');
+    cards.forEach(card => {
+        if (theme === 'light') {
+            card.style.background = 'linear-gradient(to top right, #2c2c2c, #3a3b3c)';
+        } else {
+            card.style.background = 'linear-gradient(to top right, #fdfbfb, #ebedee)';
+        }
+    });
+}
+
+// Initial check
+adaptProfileCardBackground();
+
+// Listen for theme changes if you support live switching
+const observer = new MutationObserver(adaptProfileCardBackground);
+observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+</script>
+
+{% endblock %}

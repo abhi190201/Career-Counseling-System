@@ -1,0 +1,11 @@
+django
+djangorestframework
+django-allauth
+python-dotenv
+mysqlclient
+django-widget-tweaks
+django-crispy-forms
+crispy-bootstrap5
+requests
+cryptography
+pymysql

@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>Career Counseling</title>
+
+    <!-- Bootstrap & FontAwesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --light-bg: #e7f1fc;
+            --dark-bg: #0f0f0f;
+            --light-text: #1a1a1a;
+            --dark-text: #eaeaea;
+        }
+
+        [data-theme="light"] {
+            --bg: var(--light-bg);
+            --text: var(--light-text);
+        }
+
+        [data-theme="dark"] {
+            --bg: var(--dark-bg);
+            --text: var(--dark-text);
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: #1e1e1e;
+            padding-top: 60px;
+            transition: left 0.3s ease;
+            z-index: 1050;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .main-content {
+            transition: margin-left 0.3s ease;
+            padding: 1rem;
+        }
+
+        .main-content.sidebar-active {
+            margin-left: 250px;
+        }
+
+        #menuToggle, #themeToggle {
+            position: fixed;
+            top: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1100;
+            color: var(--text);
+        }
+
+        #menuToggle { left: 1rem; }
+        #themeToggle { right: 1rem; }
+
+        header.header-logo {
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sidebar toggle icons -->
+<i class="fas fa-bars" id="menuToggle"></i>
+
+
+<!-- Sidebar -->
+{% include "sidebar.html" %}
+
+<!-- Header -->
+<header class="header-logo py-3 text-center">
+    <h1 class="text-white">Career Counseling</h1>
+</header>
+
+<!-- Main Content -->
+<main class="main-content" id="mainContent">
+    {% block content %}{% endblock %}
+</main>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+    // Sidebar toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('mainContent');
+
+    if (menuToggle && sidebar && mainContent) {
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            mainContent.classList.toggle('sidebar-active');
+        });
+    }
+
+    // Theme toggle
+   // const themeToggle = document.getElementById('themeToggle');
+   // const htmlTag = document.documentElement;
+
+    //if (themeToggle) {
+      //  themeToggle.addEventListener('click', () => {
+        //    const isDark = htmlTag.getAttribute('data-theme') === 'dark';
+          //  htmlTag.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            //themeToggle.classList.toggle('fa-moon', isDark);
+            //themeToggle.classList.toggle('fa-sun', !isDark);
+        //});
+    //}
+</script>
+<script>
+    const bgImages = [
+        "{% static 'images/ChatGPT.png' %}",
+        "{% static 'images/ChatGPT1.png' %}",
+
+        
+    ];
+
+    const randomIndex = Math.floor(Math.random() * bgImages.length);
+    const selectedImage = bgImages[randomIndex];
+
+    document.body.style.backgroundImage = `url('${selectedImage}')`;
+</script>
+
+</body>
+</html>

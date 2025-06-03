@@ -1,0 +1,302 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ domain.DomainName }} Quiz</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: url("{% static 'images/ChatGPT.jpg' %}") center center / cover no-repeat fixed;
+      backdrop-filter: blur(6px);
+      min-height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .card {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 1rem;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+    }
+
+    .form-check {
+      margin-bottom: 0.8rem;
+    }
+
+    .btn-custom {
+      margin: 0.5rem;
+    }
+
+    .main-layout {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+
+    .quiz-container {
+      flex: 1;
+    }
+
+    #question-sidebar {
+      position: sticky;
+      top: 2rem;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 100px;
+    }
+
+    .question-btn {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 14px;
+      margin: 5px;
+      text-align: center;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      background-color: #f8f9fa;
+      cursor: pointer;
+    }
+
+    .question-btn:hover {
+      background-color: #e9ecef;
+    }
+
+    .question-btn.active {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .question-btn.selected {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .question-btn.active.selected {
+      background: linear-gradient(135deg, #007bff 40%, #28a745 60%);
+    }
+
+    .question-container {
+      display: none;
+    }
+
+    @media (max-width: 991px) {
+      .main-layout {
+        flex-direction: column;
+      }
+
+      #question-sidebar {
+        position: static;
+        max-height: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: auto;
+      }
+
+      .question-btn {
+        margin: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5 main-layout">
+    <div class="quiz-container">
+      <div class="card">
+        <h2 class="text-center mb-4">{{ domain.DomainName }} Quiz</h2>
+        <div class="progress mb-3">
+          <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div id="question-number"></div>
+
+        {% for question in questions %}
+          <div class="question-container" id="question_{{ question.DomainQuestionID }}">
+            <h5><strong>Question {{ forloop.counter }}</strong></h5>
+            <p class="mb-3">{{ question.QuestionText }}</p>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="question_{{ question.DomainQuestionID }}" id="q{{ question.DomainQuestionID }}_A" value="A" onclick="selectOption('{{ question.DomainQuestionID }}', 'A')">
+              <label class="form-check-label" for="q{{ question.DomainQuestionID }}_A">A. {{ question.OptionA }}</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="question_{{ question.DomainQuestionID }}" id="q{{ question.DomainQuestionID }}_B" value="B" onclick="selectOption('{{ question.DomainQuestionID }}', 'B')">
+              <label class="form-check-label" for="q{{ question.DomainQuestionID }}_B">B. {{ question.OptionB }}</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="question_{{ question.DomainQuestionID }}" id="q{{ question.DomainQuestionID }}_C" value="C" onclick="selectOption('{{ question.DomainQuestionID }}', 'C')">
+              <label class="form-check-label" for="q{{ question.DomainQuestionID }}_C">C. {{ question.OptionC }}</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="question_{{ question.DomainQuestionID }}" id="q{{ question.DomainQuestionID }}_D" value="D" onclick="selectOption('{{ question.DomainQuestionID }}', 'D')">
+              <label class="form-check-label" for="q{{ question.DomainQuestionID }}_D">D. {{ question.OptionD }}</label>
+            </div>
+          </div>
+        {% empty %}
+          <p class="text-danger">No questions available for this domain.</p>
+        {% endfor %}
+
+        <div class="text-center mt-4">
+          <button id="prev-btn" class="btn btn-secondary btn-custom" onclick="prevQuestion()">Previous</button>
+          <button id="next-btn" class="btn btn-primary btn-custom" onclick="nextQuestion()">Next</button>
+          <button class="btn btn-success btn-custom" onclick="submitTest()">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="question-sidebar">
+      {% for question in questions %}
+        <button class="question-btn" id="btn_{{ question.DomainQuestionID }}" onclick="navigateToQuestion({{ forloop.counter0 }})" title="Question {{ forloop.counter }}">
+          {{ forloop.counter }}
+        </button>
+      {% endfor %}
+    </div>
+  </div>
+
+  <script>
+    let currentQuestion = 0;
+    const questions = document.querySelectorAll('.question-container');
+
+    function showQuestion(index) {
+      questions.forEach((q, i) => {
+        q.style.display = i === index ? "block" : "none";
+      });
+
+      const questionId = questions[index].id.split('_')[1];
+      document.getElementById("question-number").innerText = `Question ${index + 1} of ${questions.length}`;
+      updateSidebar(index);
+      updateProgress();
+    }
+
+    function selectOption(questionId, option) {
+      sessionStorage.setItem(`answer_${questionId}`, option);
+      document.getElementById("btn_" + questionId).classList.add("selected");
+      updateProgress();
+    }
+
+    function loadAnswersFromStorage() {
+      questions.forEach(q => {
+        const qid = q.id.split('_')[1];
+        const saved = sessionStorage.getItem(`answer_${qid}`);
+        if (saved) {
+          const radio = document.getElementById(`q${qid}_${saved}`);
+          if (radio) {
+            radio.checked = true;
+            document.getElementById("btn_" + qid).classList.add("selected");
+          }
+        }
+      });
+    }
+
+    function updateSidebar(index) {
+      const buttons = document.getElementsByClassName("question-btn");
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active");
+      }
+      buttons[index].classList.add("active");
+    }
+
+    function updateProgress() {
+      const total = questions.length;
+      let answered = 0;
+      questions.forEach(q => {
+        const qid = q.id.split('_')[1];
+        if (sessionStorage.getItem(`answer_${qid}`)) answered++;
+      });
+      const percent = Math.floor((answered / total) * 100);
+      const progressBar = document.getElementById("progress-bar");
+      progressBar.style.width = `${percent}%`;
+      progressBar.setAttribute("aria-valuenow", percent);
+    }
+
+    function nextQuestion() {
+  if (currentQuestion < questions.length - 1) {
+    currentQuestion++;
+  } else {
+    currentQuestion = 0; // Loop back to question 1
+  }
+  showQuestion(currentQuestion);
+}
+
+
+    function prevQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion(currentQuestion);
+      }
+    }
+
+    function navigateToQuestion(index) {
+      currentQuestion = index;
+      showQuestion(currentQuestion);
+    }
+
+    function submitTest() {
+      const answers = {};
+      questions.forEach(q => {
+        const qid = q.id.split('_')[1];
+        const selected = sessionStorage.getItem(`answer_${qid}`);
+        if (selected) {
+          answers[qid] = selected;
+        }
+      });
+
+      const total = questions.length;
+      const unanswered = total - Object.keys(answers).length;
+      if (unanswered > 0 && !confirm(`You have ${unanswered} unanswered questions. Submit anyway?`)) return;
+
+      fetch("{% url 'submit_test' domain_id=domain.DomainID %}", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": getCookie("csrftoken")
+        },
+        body: JSON.stringify(answers)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === "success") {
+          sessionStorage.clear();
+          window.location.href = data.redirect_url;
+        } else {
+          alert("Submission failed: " + data.message);
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Error submitting test.");
+      });
+    }
+
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadAnswersFromStorage();
+      showQuestion(currentQuestion);
+    });
+  </script>
+</body>
+</html>

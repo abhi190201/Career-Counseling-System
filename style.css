@@ -1,0 +1,365 @@
+/* ================== Global Styles ================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: url("/static/images/stitch.jpg") no-repeat center center/cover;
+  background-attachment: fixed;
+  background-size: cover;
+  color: #fff;
+  overflow-x: hidden;
+  transition: background 0.3s ease-in-out;
+}
+
+/* ================== Dark Mode ================== */
+.dark-mode {
+  background: #1e1e1e !important;
+  color: #fff !important;
+}
+
+.dark-mode .glass-effect {
+  background: rgba(50, 50, 50, 0.7);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode input, .dark-mode textarea, .dark-mode select {
+  background: rgba(50, 50, 50, 0.8);
+  color: #fff;
+  border: 1px solid #777;
+}
+
+.dark-mode label {
+  color: #ccc;
+}
+
+.dark-mode .toggle-password {
+  color: #f8f9fa;
+}
+
+/* ================== Glassmorphism Effect ================== */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+/* ================== Logo Styling ================== */
+.logo {
+  width: 100px;  
+  height: auto;
+  display: block;
+  margin: 0 auto 20px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* ================== Section Display Fix ================== */
+.section {
+  display: none;  
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.section:first-of-type {
+  display: block; 
+}
+
+/* ================== Dashboard Background Fix ================== */
+.dashboard-body {
+  background: url("/static/images/stitch.jpg") no-repeat center center/cover;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================== Image Display Fix ================== */
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;   
+  margin: 0 auto;
+}
+
+/* ================== Main Content Alignment ================== */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 260px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* ================== Sidebar ================== */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  padding-top: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.sidebar-menu li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-menu li:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ================== Profile Section Styling ================== */
+.profile-container {
+  max-width: 900px;
+  margin: 60px auto;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  padding: 50px;
+  transition: transform 0.3s ease;
+}
+
+.profile-container:hover {
+  transform: translateY(-8px);
+}
+
+.profile-pic {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ff416c;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.profile-pic:hover {
+  box-shadow: 0 15px 35px rgba(255, 65, 108, 0.7);
+}
+
+/* ================== Profile Button Visibility Fix ================== */
+#saveProfile, #cancelEdit {
+  display: none; 
+  transition: all 0.3s ease-in-out;
+}
+
+#saveProfile.show, #cancelEdit.show {
+  display: inline-block;
+}
+
+/* ================== Enhanced Domain Section ================== */
+.domain-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.domain-btn {
+  padding: 25px 55px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.4s, background 0.4s, box-shadow 0.4s;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: capitalize;
+  opacity: 0;
+  animation: domainFadeIn 0.8s ease-in-out forwards;
+}
+
+/* ================== Theme Toggle with Sun/Moon ================== */
+.theme-icon-toggle {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 999;
+  transition: transform 0.3s ease-in-out;
+}
+
+.theme-icon-toggle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.4s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Initially show sun, hide moon */
+.theme-icon-toggle .moon-icon {
+  display: none;
+}
+
+/* When dark mode is active, show moon, hide sun */
+body.dark-mode .theme-icon-toggle .sun-icon {
+  display: none;
+}
+
+body.dark-mode .theme-icon-toggle .moon-icon {
+  display: block;
+}
+
+
+
+
+/* ✅ Domain Colors */
+.domain-btn:nth-child(1) { background: linear-gradient(135deg, #00c6ff, #0072ff); } 
+.domain-btn:nth-child(2) { background: linear-gradient(135deg, #34e89e, #0f3443); } 
+.domain-btn:nth-child(3) { background: linear-gradient(135deg, #fc466b, #3f5efb); } 
+.domain-btn:nth-child(4) { background: linear-gradient(135deg, #fc466b, #3f5efb); } 
+.domain-btn:nth-child(5) { background: linear-gradient(135deg, #8e2de2, #4a00e0); } 
+.domain-btn:nth-child(6) { background: linear-gradient(135deg, #ff7e5f, #feb47b); } 
+.domain-btn:nth-child(7) { background: linear-gradient(135deg, #00c6ff, #0072ff); } 
+.domain-btn:nth-child(8) { background: linear-gradient(135deg, #34e89e, #0f3443); }
+.domain-btn:nth-child(9) { background: linear-gradient(135deg, #fc466b, #3f5efb); } 
+.domain-btn:nth-child(10) { background: linear-gradient(135deg, #fc466b, #3f5efb); } 
+.domain-btn:nth-child(11) { background: linear-gradient(135deg, #8e2de2, #4a00e0); }
+.domain-btn:nth-child(12) { background: linear-gradient(135deg, #ff7e5f, #feb47b); }
+.domain-btn:nth-child(13) { background: linear-gradient(135deg, #00c6ff, #0072ff); } 
+.domain-btn:nth-child(14) { background: linear-gradient(135deg, #34e89e, #0f3443); } 
+
+.domain-btn:hover {
+  transform: scale(1.2) rotate(-2deg);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* ✅ Animation */
+@keyframes domainFadeIn {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ================== Mobile Responsiveness ================== */
+@media (max-width: 1024px) {
+  .profile-container {
+    padding: 30px;
+  }
+
+  .profile-pic {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80px;
+  }
+
+  .main-content {
+    margin-left: 90px;
+  }
+
+  .profile-container {
+    padding: 25px;
+  }
+
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+  }
+}
+/* ================== Sidebar ================== */
+.sidebar {
+  position: fixed;
+  left: -250px; /* Initially hidden */
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  padding-top: 20px;
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  left: 0; /* Slide in when active */
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.sidebar-menu li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-menu li:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ================== Sidebar Toggle Button ================== */
+.sidebar-toggle-btn {
+  position: absolute;
+  top: 20px;
+  left: 250px;
+  z-index: 1100;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-size: 30px;
+  color: #fff;
+}
+
+/* When the sidebar is open, move the toggle button */
+.sidebar.open + .sidebar-toggle-btn {
+  left: 250px;
+}
+
+/* ================== Main Content ================== */
+.main-content {
+  transition: all 0.3s ease-in-out;
+  margin-left: 0;
+}
+
+.sidebar.open + .main-content {
+  margin-left: 250px;
+}
